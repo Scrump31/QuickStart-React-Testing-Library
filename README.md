@@ -2,7 +2,7 @@
 
 ## Video Lesson Outline:
 
-[#1 - Application Overview](https://youtu.be/-rhKK4Pw8nw)
+[# 1 - Application Overview](https://youtu.be/-rhKK4Pw8nw)
 
 [# 2 Verify React Testing Library is added to an Existing CRA v3 3](https://youtu.be/Sx4tRl7JKLM)
 
