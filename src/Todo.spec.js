@@ -1,32 +1,34 @@
-import React from 'react'
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import user from '@testing-library/user-event'
-import Todo from './Todo'
+import React from 'react'
 import RenderTodos from './RenderTodos'
+import Todo from './Todo'
 
 describe('<Todo />', () => {
   const mockTodo = { id: 1, todo: 'test todo' }
 
   it('should render a todo object', () => {
-    const { getByTestId } = render(<Todo todo={mockTodo} />)
-    const ItemName = getByTestId('itemName')
+    render(<Todo todo={mockTodo} />)
+    const ItemName = screen.getByTestId('itemName')
     expect(ItemName).toHaveTextContent(mockTodo.todo)
   })
 
   it('should display the previous state in the edit input ', () => {
-    const { getByText, getByPlaceholderText } = render(<Todo todo={mockTodo} />)
-    const EditBtn = getByText(/edit/i)
+    render(<Todo todo={mockTodo} />)
+    const EditBtn = screen.getByText(/edit/i)
     user.click(EditBtn)
-    const UpdateInput = getByPlaceholderText(mockTodo.todo)
+    const UpdateInput = screen.getByPlaceholderText(mockTodo.todo)
     expect(UpdateInput).toBeInTheDocument()
   })
 
   it('should update the todo via the edit input', () => {
-    const { getByText, getByPlaceholderText } = render(<Todo todo={mockTodo} />)
-    const EditBtn = getByText(/edit/i)
+    render(<Todo todo={mockTodo} />)
+
+    const EditBtn = screen.getByText(/edit/i)
     user.click(EditBtn)
-    const UpdateInput = getByPlaceholderText(mockTodo.todo)
+    const UpdateInput = screen.getByPlaceholderText(mockTodo.todo)
     user.type(UpdateInput, 'updated todo')
+
     expect(UpdateInput).toHaveValue('updated todo')
   })
 
